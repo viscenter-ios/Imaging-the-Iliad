@@ -48,6 +48,8 @@ private:
     vector<Drawable> m_drawables;
     GLuint m_colorRenderbuffer;
     GLuint m_depthRenderbuffer;
+    GLuint m_frameBuffer;
+    GLuint m_program;
     mat4 m_translation;
     UniformHandles m_uniforms;
     AttributeHandles m_attributes;
@@ -65,6 +67,10 @@ RenderingEngine::RenderingEngine(IResourceManager* resourceManager)
 	m_resourceManager = resourceManager;
     glGenRenderbuffers(1, &m_colorRenderbuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, m_colorRenderbuffer);
+    glGenRenderbuffers(1, &m_depthRenderbuffer);
+    glGenFramebuffers(1, &m_frameBuffer);
+    glGenTextures(1, &m_gridTexture);
+    m_program = BuildProgram(SimpleVertexShader, SimpleFragmentShader);
 }
 
 void RenderingEngine::Reset()
@@ -79,7 +85,7 @@ void RenderingEngine::Reset()
 		m_drawables.clear();
 	}
 	//glDeleteFramebuffers(1, &framebuffer);
-	glDeleteTextures(1, &m_gridTexture);
+	//glDeleteTextures(1, &m_gridTexture);
 
 
 }
@@ -130,14 +136,11 @@ void RenderingEngine::Initialize(const vector<ISurface*>& surfaces)
                                  GL_RENDERBUFFER_HEIGHT, &height);
     
     // Create a depth buffer that has the same size as the color buffer.
-    glGenRenderbuffers(1, &m_depthRenderbuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, m_depthRenderbuffer);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, width, height);
     
     // Create the framebuffer object.
-    GLuint framebuffer;
-    glGenFramebuffers(1, &framebuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, m_frameBuffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
                               GL_RENDERBUFFER, m_colorRenderbuffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
@@ -145,22 +148,21 @@ void RenderingEngine::Initialize(const vector<ISurface*>& surfaces)
     glBindRenderbuffer(GL_RENDERBUFFER, m_colorRenderbuffer);
     
     // Create the GLSL program.
-    GLuint program = BuildProgram(SimpleVertexShader, SimpleFragmentShader);
-    glUseProgram(program);
+    glUseProgram(m_program);
 
     // Extract the handles to attributes and uniforms.
-    m_attributes.Position = glGetAttribLocation(program, "Position");
-    m_attributes.Normal = glGetAttribLocation(program, "Normal");
-    m_attributes.DiffuseMaterial = glGetAttribLocation(program, "DiffuseMaterial");
-    m_attributes.TextureCoord = glGetAttribLocation(program, "TextureCoord");
-    m_uniforms.Projection = glGetUniformLocation(program, "Projection");
-    m_uniforms.Modelview = glGetUniformLocation(program, "Modelview");
-    m_uniforms.NormalMatrix = glGetUniformLocation(program, "NormalMatrix");
-    m_uniforms.LightPosition = glGetUniformLocation(program, "LightPosition");
-    m_uniforms.AmbientMaterial = glGetUniformLocation(program, "AmbientMaterial");
-    m_uniforms.SpecularMaterial = glGetUniformLocation(program, "SpecularMaterial");
-    m_uniforms.Shininess = glGetUniformLocation(program, "Shininess"); 
-    m_uniforms.Sampler = glGetUniformLocation(program, "Sampler");
+    m_attributes.Position = glGetAttribLocation(m_program, "Position");
+    m_attributes.Normal = glGetAttribLocation(m_program, "Normal");
+    m_attributes.DiffuseMaterial = glGetAttribLocation(m_program, "DiffuseMaterial");
+    m_attributes.TextureCoord = glGetAttribLocation(m_program, "TextureCoord");
+    m_uniforms.Projection = glGetUniformLocation(m_program, "Projection");
+    m_uniforms.Modelview = glGetUniformLocation(m_program, "Modelview");
+    m_uniforms.NormalMatrix = glGetUniformLocation(m_program, "NormalMatrix");
+    m_uniforms.LightPosition = glGetUniformLocation(m_program, "LightPosition");
+    m_uniforms.AmbientMaterial = glGetUniformLocation(m_program, "AmbientMaterial");
+    m_uniforms.SpecularMaterial = glGetUniformLocation(m_program, "SpecularMaterial");
+    m_uniforms.Shininess = glGetUniformLocation(m_program, "Shininess"); 
+    m_uniforms.Sampler = glGetUniformLocation(m_program, "Sampler");
     
 	// Set the active sampler to stage 0.  Not really necessary since the uniform
     // defaults to zero anyway, but good practice.
@@ -168,7 +170,6 @@ void RenderingEngine::Initialize(const vector<ISurface*>& surfaces)
     glUniform1i(m_uniforms.Sampler, 0);
 	
     // Load the texture.
-    glGenTextures(1, &m_gridTexture);
     glBindTexture(GL_TEXTURE_2D, m_gridTexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

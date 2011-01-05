@@ -684,13 +684,8 @@
 		D3A6101912010B620034B4AF /* ResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100B12010B620034B4AF /* ResourceManager.mm */; };
 		D3A6101A12010B620034B4AF /* TexturedLighting.es2.frag in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100D12010B620034B4AF /* TexturedLighting.es2.frag */; };
 		D3A6101B12010B620034B4AF /* TexturedLighting.es2.vert in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100E12010B620034B4AF /* TexturedLighting.es2.vert */; };
-		D3A6101C12010B620034B4AF /* Grid16.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A6101012010B620034B4AF /* Grid16.png */; };
-		D3A6101D12010B620034B4AF /* va012rn.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A6101112010B620034B4AF /* va012rn.png */; };
 		D3A6102012010B6D0034B4AF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A6101F12010B6D0034B4AF /* OpenGLES.framework */; };
 		D3A610BF12010F000034B4AF /* GLView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A610BE12010F000034B4AF /* GLView.xib */; };
-		D3A611451201153D0034B4AF /* micronapalmv2.obj in Resources */ = {isa = PBXBuildFile; fileRef = D3A611421201153D0034B4AF /* micronapalmv2.obj */; };
-		D3A611461201153D0034B4AF /* Ninja.obj in Resources */ = {isa = PBXBuildFile; fileRef = D3A611431201153D0034B4AF /* Ninja.obj */; };
-		D3A611471201153D0034B4AF /* va012rn-hi.obj in Resources */ = {isa = PBXBuildFile; fileRef = D3A611441201153D0034B4AF /* va012rn-hi.obj */; };
 		D3B4D5F6120AFD880073599C /* 137r.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D3B4D5F4120AFD880073599C /* 137r.jpg */; };
 		D3B4D5F7120AFD880073599C /* 222v.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D3B4D5F5120AFD880073599C /* 222v.jpg */; };
 		D3B4D6CF120B13780073599C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B4D6CE120B13780073599C /* MessageUI.framework */; };
@@ -1417,14 +1412,9 @@
 		D3A6100B12010B620034B4AF /* ResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourceManager.mm; sourceTree = "<group>"; };
 		D3A6100D12010B620034B4AF /* TexturedLighting.es2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TexturedLighting.es2.frag; sourceTree = "<group>"; };
 		D3A6100E12010B620034B4AF /* TexturedLighting.es2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TexturedLighting.es2.vert; sourceTree = "<group>"; };
-		D3A6101012010B620034B4AF /* Grid16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grid16.png; sourceTree = "<group>"; };
-		D3A6101112010B620034B4AF /* va012rn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = va012rn.png; sourceTree = "<group>"; };
 		D3A6101212010B620034B4AF /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
 		D3A6101F12010B6D0034B4AF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D3A610BE12010F000034B4AF /* GLView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLView.xib; sourceTree = "<group>"; };
-		D3A611421201153D0034B4AF /* micronapalmv2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = micronapalmv2.obj; sourceTree = "<group>"; };
-		D3A611431201153D0034B4AF /* Ninja.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Ninja.obj; sourceTree = "<group>"; };
-		D3A611441201153D0034B4AF /* va012rn-hi.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "va012rn-hi.obj"; sourceTree = "<group>"; };
 		D3B4D5F4120AFD880073599C /* 137r.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 137r.jpg; sourceTree = "<group>"; };
 		D3B4D5F5120AFD880073599C /* 222v.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 222v.jpg; sourceTree = "<group>"; };
 		D3B4D6CE120B13780073599C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -2260,8 +2250,6 @@
 		D3A6100F12010B620034B4AF /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				D3A6101012010B620034B4AF /* Grid16.png */,
-				D3A6101112010B620034B4AF /* va012rn.png */,
 			);
 			path = Textures;
 			sourceTree = "<group>";
@@ -2269,9 +2257,6 @@
 		D3A611411201153D0034B4AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D3A611421201153D0034B4AF /* micronapalmv2.obj */,
-				D3A611431201153D0034B4AF /* Ninja.obj */,
-				D3A611441201153D0034B4AF /* va012rn-hi.obj */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2393,9 +2378,19 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "University of Kentucky";
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Iliad" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3063,12 +3058,7 @@
 				D3A60EF912007CD10034B4AF /* 3.jpg in Resources */,
 				D3A60EFA12007CD10034B4AF /* 4.jpg in Resources */,
 				D3A60F7A12008E100034B4AF /* ribbon.png in Resources */,
-				D3A6101C12010B620034B4AF /* Grid16.png in Resources */,
-				D3A6101D12010B620034B4AF /* va012rn.png in Resources */,
 				D3A610BF12010F000034B4AF /* GLView.xib in Resources */,
-				D3A611451201153D0034B4AF /* micronapalmv2.obj in Resources */,
-				D3A611461201153D0034B4AF /* Ninja.obj in Resources */,
-				D3A611471201153D0034B4AF /* va012rn-hi.obj in Resources */,
 				D37E074912034B1A001B1CF3 /* NoteView.xib in Resources */,
 				D37E099412074462001B1CF3 /* pageDissolveTop.png in Resources */,
 				D37E09E512074B03001B1CF3 /* pageDissolveBottom.png in Resources */,
@@ -3172,7 +3162,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -3185,9 +3175,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

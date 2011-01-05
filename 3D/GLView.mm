@@ -135,8 +135,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
     // do something with the data
     // receivedData is declared as a method instance elsewhere
 	
@@ -184,7 +182,6 @@
 	
     // release the connection, and the data object
     [connection release];
-	[pool release];
 }
 
 
