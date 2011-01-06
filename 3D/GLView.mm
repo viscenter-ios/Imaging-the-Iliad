@@ -242,7 +242,11 @@
         
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]
                                               initWithTarget:self action:@selector(handlePanGesture:)];
+#if TARGET_IPHONE_SIMULATOR
+        panGesture.minimumNumberOfTouches = 2;
+#else
         panGesture.minimumNumberOfTouches = 3;
+#endif
         [self addGestureRecognizer:panGesture];
         [panGesture release];
         
