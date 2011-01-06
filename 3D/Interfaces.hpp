@@ -25,6 +25,8 @@ struct IApplicationEngine {
     virtual void OnFingerMove(ivec2 oldLocation, ivec2 newLocation) = 0;
     virtual void OnPinchMove(float factor) = 0;
     virtual void OnPinchEnd(float factor) = 0;
+    virtual void OnPanMove(int x, int y) = 0;
+    virtual void OnPanEnd(int x, int y) = 0;
     virtual ~IApplicationEngine() {}
 };
 

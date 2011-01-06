@@ -29,6 +29,8 @@ public:
     void OnFingerMove(ivec2 oldLocation, ivec2 newLocation);
     void OnPinchMove(float factor);
     void OnPinchEnd(float factor);
+    void OnPanMove(int x, int y);
+    void OnPanEnd(int x, int y);
     void Render() const;
     void UpdateAnimation(float dt);
 private:
@@ -42,6 +44,8 @@ private:
     bool m_spinning;
     Quaternion m_orientation;
     Quaternion m_previousOrientation;
+    vec2 m_pan;
+    vec2 m_previousPan;
     float m_zoom;
     float m_previousZoom;
     int m_currentSurface;
@@ -63,6 +67,8 @@ ApplicationEngine::ApplicationEngine(IRenderingEngine* renderingEngine, IResourc
     m_pressedButton(-1),
     m_zoom(1.0f),
     m_previousZoom(1.0f),
+    m_pan(vec2(0,0)),
+    m_previousPan(vec2(0,0)),
     m_renderingEngine(renderingEngine),
     m_resourceManager(resourceManager)
 {
@@ -181,7 +187,7 @@ void ApplicationEngine::PopulateVisuals(Visual* visuals) const
     visuals[m_currentSurface].ViewportSize = ivec2(m_screenSize.x, m_screenSize.y);
     visuals[m_currentSurface].Orientation = m_orientation;
     visuals[m_currentSurface].Zoom = m_zoom;
-    visuals[m_currentSurface].Translate = vec2(0, 0);
+    visuals[m_currentSurface].Translate = m_pan;
 	
 
 }
@@ -274,6 +280,18 @@ void ApplicationEngine::OnPinchEnd(float factor)
     m_previousZoom = fmin(fmax(m_previousZoom * factor, 0.75),8.0);
 }
 
+void ApplicationEngine::OnPanMove(int x, int y)
+{
+    float pan_factor = 100.0;
+    m_pan = vec2(fmin(fmax(m_previousPan.x + (x / pan_factor), -5.12), 5.12),
+                 fmin(fmax(m_previousPan.y + (y / pan_factor), -3.84), 3.84));
+}
+
+void ApplicationEngine::OnPanEnd(int x, int y)
+{
+    m_previousPan = m_pan;
+}
+    
 vec3 ApplicationEngine::MapToSphere(ivec2 touchpoint) const
 {
     vec2 p = touchpoint - m_centerPoint;

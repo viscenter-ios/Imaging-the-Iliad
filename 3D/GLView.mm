@@ -242,7 +242,7 @@
         
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]
                                               initWithTarget:self action:@selector(handlePanGesture:)];
-        panGesture.minimumNumberOfTouches = 2;
+        panGesture.minimumNumberOfTouches = 3;
         [self addGestureRecognizer:panGesture];
         [panGesture release];
         
@@ -334,6 +334,13 @@
 - (IBAction)handlePanGesture:(UIPanGestureRecognizer *)sender {
     CGPoint translate = [sender translationInView:self];
     NSLog(@"%@", [NSString stringWithFormat:@"Pan: %.1f %.1f", translate.x, translate.y]);
+    
+    if ([(UIPinchGestureRecognizer *)sender state] == UIGestureRecognizerStateEnded) {
+        m_applicationEngine->OnPanEnd(translate.x, -translate.y);
+    }
+    else {
+        m_applicationEngine->OnPanMove(translate.x, -translate.y);
+    }
 }
 
 @end
