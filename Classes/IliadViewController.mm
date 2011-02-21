@@ -764,7 +764,7 @@
 		webScrollValueRP1 = 0;
 		webScrollValueRP2 = 0;
 		webScrollValueRP3 = 0;
-		NSTimer * webScroll = [NSTimer scheduledTimerWithTimeInterval: (1.0/10.0) target: self selector: @selector(webScroll) userInfo:nil repeats:YES];
+		NSTimer * webScroll = [NSTimer scheduledTimerWithTimeInterval: (1.0/10.0) target: self selector: @selector(webScroll:) userInfo:nil repeats:YES];
 
 		
 		lastTurnDirection = 0;
@@ -860,23 +860,8 @@
 		[statusBar3 setImage:sB3];
 		statusBar3.alpha = 0.0;
 		[self.view addSubview:statusBar3];
-		
-		
-		//Adds the 3D view on top, from here its just put on and off by the alpha level.
-		
-		GLView * m_view;
-		
-		m_view = [[GLView alloc] initWithFrame: CGRectMake(0, 0, 1024, 748)];
-		
-		enlargeView = m_view;
-		
-		m_view.alpha = 0.0;
-		
-		[self.view addSubview: m_view];  
-		
-		
-		
-		
+
+			enlargeView = nil;
 		
 		//if ([mainDelegate.bookmarksArrayOneSaved count] > 0) {
 			
@@ -1170,10 +1155,19 @@
 		statusBar3.alpha = 0.0;
 
 		threeDOn = NO;
-		//[enlargeView release];
+		[enlargeView removeFromSuperview];
+		[enlargeView release];
+		enlargeView = nil;
 	}
 	else {
 
+		//Adds the 3D view on top, from here its just put on and off by the alpha level.
+				
+		enlargeView = [[GLView alloc] initWithFrame: CGRectMake(0, 0, 1024, 748)];
+		enlargeView.alpha = 0.0;
+		
+		[self.view addSubview: enlargeView];
+		
 		
 		// Starts the timer to add the 3D back
 
@@ -1259,7 +1253,7 @@
 		
 		// This is where this view calls for the GLView to start reloading the 3D stuff
 		
-		[enlargeView passFolio:folio];
+		if (enlargeView != nil ) [enlargeView passFolio:folio];
 
 		NSLog(@"backhere");
 		
@@ -1277,7 +1271,7 @@
 	
 	
 	
-	enlargeView.alpha = .99;
+	if( enlargeView != nil ) enlargeView.alpha = .99;
 	
 	statusBar1.alpha = 0.0;
 	statusBar2.alpha = 0.0;
@@ -4123,7 +4117,7 @@
 /// HANDLE RERENDERING FOR SCROLL
 
 
-- (void) webScroll {
+- (void) webScroll:(NSTimer*)timer {
 	
 	
 	if (viewOn == 1) {
@@ -4241,7 +4235,7 @@
 
 	//Set the paths to do the Xpath in the "VA.Fixed.xml":
 	NSString *newpath = [[NSBundle mainBundle] pathForResource:@"VAFolioIndex" ofType:@"xml"];
-	NSString *newxmlPath=[[NSString alloc] initWithString:newpath];
+	NSString *newxmlPath=[NSString stringWithString:newpath];
 	NSURL *newxmlURL = [NSURL fileURLWithPath:newxmlPath];
 	xmlDocument = [[[CXMLDocument alloc] initWithContentsOfURL:newxmlURL options:0 error:nil] autorelease];
 	
@@ -4395,7 +4389,7 @@
 	
 	//Path for search the XML
 	newpath = [[NSBundle mainBundle] pathForResource:@"Iliad" ofType:@"xml"];
-	newxmlPath=[[NSString alloc] initWithString:newpath];
+	newxmlPath=[NSString stringWithString:newpath];
 	newxmlURL = [NSURL fileURLWithPath:newxmlPath];
 	xmlDocument = [[[CXMLDocument alloc] initWithContentsOfURL:newxmlURL options:0 error:nil] autorelease];
 	
@@ -4881,10 +4875,7 @@ else{
 
 
 - (void)parseXMLFileAtURL:(NSString *)URL {
-	
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-
-	
+		
 	NSURL *xmlURL = [NSURL fileURLWithPath:URL];
 	
     rssParser = [[[NSXMLParser alloc] initWithContentsOfURL:xmlURL] autorelease];
@@ -4896,8 +4887,6 @@ else{
     [rssParser setShouldResolveExternalEntities:NO];
 	
     [rssParser parse];
-	
-	[pool release];
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
@@ -4912,6 +4901,7 @@ else{
 	
 	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error Loading Content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
+	[errorAlert release];
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
@@ -5035,6 +5025,7 @@ else{
 	UIImageView *holder = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
 	holder.image = bgim;
 	[self.view addSubview:holder];
+	[holder release];
 	
 	[self.view addSubview:leavesView];
 }
