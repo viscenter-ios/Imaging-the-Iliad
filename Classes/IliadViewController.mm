@@ -12,12 +12,53 @@
 #import "BookmarkView.h"
 #import "ChapterView.h"
 #import "TouchXML.h"
-#import "GLView.h"
 
 
 @implementation IliadViewController
 
 @synthesize htmlRP1, htmlRP2, htmlRP3, viewsForAnimation;
+
+//@synthesize scrollView;
+
+
+@synthesize imageScrollView = _imageScrollView;
+
+
+
+// Used to work out the minimum zoom, called when device rotates (as aspect ratio of ScrollView changes when this happens). Could become part of NYOBetterUIScrollView but put here for now as you may not want the same behaviour I do in this regard :)
+- (void)setMinimumZoomForCurrentFrame {
+	UIImageView *imageView = (UIImageView *)[self.imageScrollView childView];
+	
+	// Work out a nice minimum zoom for the image - if it's smaller than the ScrollView then 1.0x zoom otherwise a scaled down zoom so it fits in the ScrollView entirely when zoomed out
+	CGSize imageSize = imageView.image.size;
+	CGSize scrollSize = self.imageScrollView.frame.size;
+	CGFloat widthRatio = scrollSize.width / imageSize.width;
+	CGFloat heightRatio = scrollSize.height / imageSize.height;
+	CGFloat minimumZoom = MIN(1.0, (widthRatio > heightRatio) ? heightRatio : widthRatio);
+	
+	[self.imageScrollView setMinimumZoomScale:minimumZoom];
+}
+
+
+- (void)setMinimumZoomForCurrentFrameAndAnimateIfNecessary {
+	BOOL wasAtMinimumZoom = NO;
+	
+	if(self.imageScrollView.zoomScale == self.imageScrollView.minimumZoomScale) {
+		wasAtMinimumZoom = YES;
+	}
+	
+	[self setMinimumZoomForCurrentFrame];
+	
+	if(wasAtMinimumZoom || self.imageScrollView.zoomScale < self.imageScrollView.minimumZoomScale) {
+		[self.imageScrollView setZoomScale:self.imageScrollView.minimumZoomScale animated:YES];
+	}	
+}
+
+
+
+
+
+
 
 
 - (void) dataManage { // where we tryed to save the state of the book on close
@@ -831,6 +872,10 @@
 		
 		
 		
+		
+		
+		
+		
 
 		
 		
@@ -869,6 +914,115 @@
 		//}
 		
 		
+		
+		
+		
+	//	enlargeView = [[GLView alloc] initWithFrame: CGRectMake(0, 0, 1024, 748)];
+	//	enlargeView.alpha = 0.0;
+		
+	//	[self.view addSubview: enlargeView];
+		//uiImage = [UIImage imageNamed:@"12r.jpg"];
+
+		
+		
+
+/*		
+		uiImage = [UIImage imageNamed:@"12r.jpg"];
+
+		
+		CGSize photoSize = [uiImage size];
+		//scrollView = (UIScrollView *)[self view];
+		scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
+
+		[scrollView setDelegate:self];
+		[scrollView setContentSize:photoSize];
+		[scrollView setBackgroundColor:[UIColor blackColor]];
+		[scrollView setShowsHorizontalScrollIndicator:NO];
+		[scrollView setShowsVerticalScrollIndicator:NO];
+		
+		// Create the image view.
+		largeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, photoSize.width, photoSize.height)];
+		//[largeImage setContentMode:UIViewContentModeCenter];
+		[largeImage setImage:uiImage];
+		[scrollView addSubview:largeImage];
+		
+		// Configure zooming.
+		CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+		CGFloat widthRatio = screenSize.width / photoSize.width;
+		CGFloat heightRatio = screenSize.height / photoSize.height;
+		CGFloat initialZoom = (widthRatio > heightRatio) ? heightRatio : widthRatio;
+		[scrollView setMaximumZoomScale:3.0];
+		[scrollView setMinimumZoomScale:1.0];
+		[scrollView setZoomScale:1.0];
+		[scrollView setBouncesZoom:YES];
+		
+		// Center the photo.
+		CGFloat topInset = (screenSize.height - photoSize.height * initialZoom) / 2.0;
+		if (topInset > 0.0)
+		{
+			[scrollView setContentInset:UIEdgeInsetsMake(topInset - 44.0, 0.0, 0.0, 0.0)];
+		}
+		
+		
+
+		
+		[self.view addSubview:scrollView];
+*/
+		/*
+		
+		//uiImage = [[UIImage alloc] initWithData:jpgData];
+		uiImage = [UIImage imageNamed:@"12r.jpg"];
+
+		
+		
+		
+		largeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
+		[largeImage setImage:uiImage];
+		
+		//largeImage.contentMode = aspectFit(<#CGRect innerRect#>, <#CGRect outerRect#>)
+		largeImage.alpha = 1.0;
+		
+		scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
+		//scrollView.contentMode = (UIViewContentModeScaleAspectFit);
+		//scrollView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+		
+		
+		scrollView.delegate = self;
+		scrollView.contentSize = CGSizeMake(largeImage.frame.size.width, largeImage.frame.size.height);
+		
+		scrollView.maximumZoomScale = 4.0;
+		scrollView.minimumZoomScale = 0.75;
+		scrollView.clipsToBounds = YES;
+		
+		[scrollView addSubview:largeImage];
+		
+		
+		[self.view addSubview:scrollView];
+		
+		
+		
+		
+		*/
+		
+		
+		
+		
+		
+		
+		self.imageScrollView = [[NYOBetterZoomUIScrollView alloc] initWithFrame:self.view.bounds];
+		//[self.imageScrollView setBackgroundColor:[UIColor blackColor]];
+		[self.imageScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+		[self.imageScrollView setShowsVerticalScrollIndicator:NO];
+		[self.imageScrollView setShowsHorizontalScrollIndicator:NO];
+		[self.imageScrollView setBouncesZoom:YES];
+		[self.imageScrollView setDelegate:self];
+		[self.imageScrollView setAlpha:0];
+		[self.view addSubview:self.imageScrollView];
+		
+		
+		
+		
+		
 	}
 	
 	//[self setUpPages];
@@ -880,11 +1034,21 @@
 
 
 
+/*
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    CGSize photoSize = [uiImage size];
+    CGFloat topInset = (screenSize.height - photoSize.height * [scrollView zoomScale]) / 2.0;
+    if (topInset < 0.0)
+    {
+        topInset = 0.0;
+    }
+	
+    [scrollView setContentInset:UIEdgeInsetsMake(topInset, 0.0, -topInset, 0.0)];
+}
 
-
-
-
-
+*/
 
 
 
@@ -1148,25 +1312,31 @@
 		
 		//Removes the 3D view (alpha out)
 		
-		enlargeView.alpha = 0.0;
+		//scrollView.alpha = 0.0;
+		self.imageScrollView.alpha = 0.0;
 		threeDBackground.alpha = 0.0;
 		statusBar1.alpha = 0.0;
 		statusBar2.alpha = 0.0;
 		statusBar3.alpha = 0.0;
 
 		threeDOn = NO;
-		[enlargeView removeFromSuperview];
-		[enlargeView release];
-		enlargeView = nil;
+		
+		//////////////////////////////////
+		
+		//[GLView release];
+		//[enlargeView removeFromSuperview];
+		//[enlargeView release];
+		//enlargeView = nil;
+		
+
+		
+		//////////////////////////////////
 	}
 	else {
 
 		//Adds the 3D view on top, from here its just put on and off by the alpha level.
 				
-		enlargeView = [[GLView alloc] initWithFrame: CGRectMake(0, 0, 1024, 748)];
-		enlargeView.alpha = 0.0;
 		
-		[self.view addSubview: enlargeView];
 		
 		
 		// Starts the timer to add the 3D back
@@ -1253,9 +1423,13 @@
 		
 		// This is where this view calls for the GLView to start reloading the 3D stuff
 		
-		if (enlargeView != nil ) [enlargeView passFolio:folio];
+		//NSLog(@"backhere?");
+		//enlargeView = [[GLView alloc] initWithFrame: CGRectMake(0, 0, 1024, 748)];
+		//enlargeView.alpha = 0.0;
+		//[self.view addSubview: enlargeView];
+		[self passFolio:folio];
 
-		NSLog(@"backhere");
+		//NSLog(@"backhere");
 		
 		
 		
@@ -1283,6 +1457,433 @@
 }
 
 
+- (void) passFolio:(NSString *) folio{
+	
+	
+	
+	NSLog(@"folio passed");
+	
+	int folioInt= [folio intValue];
+	NSString *folioResult;
+	
+    if(folioInt<=99){
+        folioResult=[NSString stringWithFormat:@"0%@",folio];
+        folioResult=[folioResult uppercaseString];
+    }
+    else if(folioInt>99){
+        folioResult=[NSString stringWithFormat:@"%@",folio];    
+        folioResult=[folioResult uppercaseString];
+    }
+    else {
+        folioResult=[NSString stringWithFormat:@"%@",folio];    
+    }	
+	
+	folio = folioResult;
+	
+	
+	
+	
+	id thePath = [NSString stringWithFormat:@"http://scipio.vis.uky.edu/iliad/va/3D/VA%sN.obj", [folio UTF8String]];
+	NSLog(@"thePATH = %@",thePath);
+	//NSURL *url = [NSURL URLWithString:thePath];
+	
+	
+	
+	id path = [NSString stringWithFormat:@"http://scipio.vis.uky.edu/iliad/va/images/VA%sN.jpg", [folio UTF8String]];
+	//NSURL *url = [NSURL URLWithString:path];
+	//NSData *data = [NSData dataWithContentsOfURL:url];
+	//UIImage* uiImage = [[UIImage alloc] initWithData:data];
+	
+	
+	//UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 2048, 2048)];
+	//[iv setImage:uiImage];
+	
+	//CGRect imageRect = iv.frame;
+	
+	//UIGraphicsBeginImageContext(iv.bounds.size);
+	//[iv.layer renderInContext:UIGraphicsGetCurrentContext()];
+	//UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+	//UIGraphicsEndImageContext();
+	
+	
+	// Create the request.
+	NSLog(@"about to initiate connection");
+	
+	//NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:thePath]];
+	// create the connection with the request
+	// and start loading the data
+	jpgFinished = NO; objFinished = NO;
+//	objConnection=[[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:thePath]] delegate:self];
+	jpgConnection=[[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:path]] delegate:self];
+	NSLog(@"initiated connection");
+//	if (objConnection && jpgConnection) {
+	if (jpgConnection) {
+		// Create the NSMutableData to hold the received data.
+		// receivedData is an instance variable declared elsewhere.
+		
+		
+		//NSLog(@"%f",[thePath valueForHTTPHeaderField:@"Content-Length"]);
+		//[path valueForHTTPHeaderField:@"Content-Length"];
+		
+		
+//		objData = [[NSMutableData data] retain];
+		jpgData = [[NSMutableData data] retain];
+		totalSize = 3705151.0;
+	} else {
+		// Inform the user that the connection failed.
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"Full images require Internet connection."
+													   delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+		[alert show];	
+		[alert release];
+	}
+	
+}
+
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse*)response
+{
+	totalSize = [response expectedContentLength];
+	if ([response respondsToSelector:@selector(statusCode)])
+	{
+		int statusCode = [(NSHTTPURLResponse*)response statusCode];
+		if (statusCode >= 400)
+		{
+			[connection cancel];
+			NSLog(@"HTTP error %d", statusCode);
+			
+			[self exitClicked];
+			
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failed" 
+																											message:[NSString stringWithFormat:@"Server returned error '%@'.\nTry again later.",
+																															 [NSHTTPURLResponse localizedStringForStatusCode:statusCode]]
+																										 delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+			[alert show];	
+			[alert release];
+		}
+	}
+	NSLog(@"size %f",totalSize);
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	NSString *sizeDownloaded = [NSString stringWithFormat:@"%i", [data length]];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"threeDPageProgress"
+														object:sizeDownloaded
+													  userInfo:nil];
+	
+	
+    // Append the new data to receivedData.
+    // receivedData is an instance variable declared elsewhere.
+//	if(connection == objConnection) [objData appendData:data];
+	if(connection == jpgConnection) [jpgData appendData:data];
+	
+	//NSLog(@"Connection stuff here");
+	
+}
+
+- (void)connection:(NSURLConnection *)connection
+  didFailWithError:(NSError *)error
+{
+    // release the connection, and the data object
+    [jpgConnection release];
+//	[objConnection release];
+    // receivedData is declared as a method instance elsewhere
+	// [receivedData release];
+//	[objData release]; objData = nil;
+	[jpgData release]; jpgData = nil;
+
+ 	[self exitClicked];
+	
+	
+    // inform the user
+    NSLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:[error localizedDescription]// @"Full images require Internet connection."
+												   delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	[alert show];	
+	[alert release];
+}
+
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    // do something with the data
+    // receivedData is declared as a method instance elsewhere
+	
+//	if( connection == jpgConnection ) {jpgFinished = YES; printf("jpg finished\n"); }
+//	if( connection == objConnection ) {objFinished = YES; printf("obg finished\n"); }
+	
+//	if( jpgFinished && objFinished )
+	if( connection == jpgConnection )
+	{
+		NSLog(@"Succeeded! Received %d bytes of data",[jpgData length]);
+//		NSLog(@"Succeeded! Received %d bytes of data",[objData length]);
+		
+		//NSString* theString = [[NSString alloc] initWithData:objData encoding:NSASCIIStringEncoding];
+		//printf("nsstring\n");
+		
+		/*UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 2048, 2048)];
+		 [iv setImage:uiImage];
+		 
+		 CGRect imageRect = iv.frame;
+		 
+		 UIGraphicsBeginImageContext(iv.bounds.size);
+		 [iv.layer renderInContext:UIGraphicsGetCurrentContext()];
+		 UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+		 UIGraphicsEndImageContext();*/
+		hasData = YES;
+		
+		//NSLog(@"%@",theString);
+		//NSLog(@"%s",(char*)[objData bytes]);
+//		m_resourceManager->LoadPngImage(string((char*)[jpgData bytes],[jpgData length]));
+		
+		
+		
+		
+		
+		
+
+		//NSLog(@"HEYO 5");
+
+		//UIImage * threeDBackgroundImage = [UIImage imageNamed:@"gradient.png"];
+
+		
+		
+		
+		
+		
+		uiImage = [UIImage imageWithData:jpgData];
+		
+		
+		// Set up the ImageView that's going inside our scroll view
+		//UIImage *image = [UIImage imageNamed:@"big.png"];
+		//UIImage *image = [UIImage imageNamed:@"fit-landscape.png"];
+		//UIImage *image = [UIImage imageNamed:@"fit-portrait.png"];
+		//UIImage *image = [UIImage imageNamed:@"small.png"];
+		//UIImage *image = [UIImage imageNamed:@"tall.png"];
+		//UIImage *image = [UIImage imageNamed:@"wide.png"];
+		UIImageView *imageView = [[UIImageView alloc] initWithImage:uiImage];
+		
+		// Finish the ScrollView setup
+		[self.imageScrollView setContentSize:imageView.frame.size];
+		[self.imageScrollView setChildView:imageView];
+		[self.imageScrollView setMaximumZoomScale:4.0];
+		[self setMinimumZoomForCurrentFrame];
+		[self.imageScrollView setZoomScale:self.imageScrollView.minimumZoomScale animated:NO];
+		
+		self.imageScrollView.alpha =1.0;
+		
+		
+		[imageView release];
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
+		CGSize photoSize = [uiImage size];
+		//scrollView = (UIScrollView *)[self view];
+		scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
+		
+		[scrollView setDelegate:self];
+		//[scrollView setBackgroundColor:[UIColor blackColor]];
+		
+		// Create the image view. We push the origin to (0, -44) to ensure
+		// that this view displays behind the navigation bar.
+		largeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0,
+																   photoSize.width, photoSize.height)];
+		[largeImage setImage:uiImage];
+		
+		[uiImage release];
+		//largeImage.contentMode = UIViewContentModeCenter; //scala
+		//largeImage.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		
+		
+		[scrollView addSubview:largeImage];
+		
+		[largeImage release];
+		
+		
+		// Configure zooming.
+		CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+		CGFloat widthRatio = 1024. / photoSize.width;
+		CGFloat heightRatio = 748. / photoSize.height;
+		CGFloat initialZoom = (widthRatio > heightRatio) ? heightRatio : widthRatio;
+		[scrollView setMaximumZoomScale:3.0];
+		
+		
+		[scrollView setMinimumZoomScale:initialZoom];
+		//[scrollView setMinimumZoomScale:1];
+
+		[scrollView setZoomScale:initialZoom];
+		//[scrollView setZoomScale:1];
+		
+		
+		NSLog(@"init zoom %f",initialZoom);
+		NSLog(@"size %f %f", photoSize.width, photoSize.height);
+		[scrollView setBouncesZoom:YES];
+		[scrollView setContentSize:CGSizeMake(photoSize.width * initialZoom,
+											  photoSize.height * initialZoom)];
+		//scrollView.contentSize = uiImage.size;
+		// Center the photo. Again we push the center point up by 44 pixels
+		// to account for the translucent navigation bar.
+		CGPoint scrollCenter = [scrollView center];
+		[largeImage setCenter:CGPointMake(scrollCenter.x,
+										  scrollCenter.y - 0.0)];
+		[self.view addSubview:scrollView];
+		
+		
+		
+		
+		[scrollView release];
+*/
+		
+/*		
+		uiImage = [[UIImage alloc] initWithData:jpgData];
+
+		CGSize photoSize = [uiImage size];
+		scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
+		[scrollView setDelegate:self];
+		[scrollView setContentSize:photoSize];
+		//[scrollView setBackgroundColor:[UIColor blackColor]];
+		[scrollView setShowsHorizontalScrollIndicator:NO];
+		[scrollView setShowsVerticalScrollIndicator:NO];
+		
+				
+		// Create the image view.
+		largeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, photoSize.width, photoSize.height)];
+		[largeImage setImage:uiImage];
+		[scrollView addSubview:largeImage];
+		
+		// Configure zooming.
+		CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+		CGFloat widthRatio = 1024 / photoSize.width;
+		CGFloat heightRatio = 748 / photoSize.height;
+		CGFloat initialZoom = (widthRatio > heightRatio) ? heightRatio : widthRatio;
+		[scrollView setMaximumZoomScale:3.0];
+		[scrollView setMinimumZoomScale:initialZoom];
+		[scrollView setZoomScale:initialZoom];
+		[scrollView setBouncesZoom:YES];
+		
+		[scrollView setContentSize:CGSizeMake(photoSize.width * initialZoom,
+											  photoSize.height * initialZoom)];
+		
+		// Center the photo.
+		CGFloat topInset = (screenSize.height - photoSize.height * initialZoom) / 2.0;
+		if (topInset > 0.0)
+		{
+			[scrollView setContentInset:UIEdgeInsetsMake(topInset - 0.0, 0.0, 0.0, 0.0)];
+		}
+		
+		
+		
+		[self.view addSubview:scrollView];
+*/
+		
+		
+		
+		
+		
+		
+		
+		btn = [UIButton buttonWithType:UIButtonTypeCustom];
+		btn.frame = CGRectMake(967, 20, 37, 37); // position in the parent view and set the size of the button
+		UIImage *ribbonImageRP1 = [UIImage imageNamed:@"exit.png"];
+		[btn setImage:ribbonImageRP1 forState:UIControlStateNormal];
+		// add targets and actions
+		[btn addTarget:self action:@selector(exitClicked) forControlEvents:UIControlEventTouchUpInside];
+		// add to a view
+		[self.view addSubview:btn];
+		
+		
+		
+		statusBar2.frame = CGRectMake(405, 365, 0, 18);
+		statusBar1.alpha = 0.0;
+		statusBar2.alpha = 0.0;
+		statusBar3.alpha = 0.0;
+		
+		/*
+		UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 2048, 2048)];
+		[iv setImage:uiImage];
+		
+		CGRect imageRect = iv.frame;
+		
+		UIGraphicsBeginImageContext(iv.bounds.size);
+		[iv.layer renderInContext:UIGraphicsGetCurrentContext()];
+		UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		
+		
+		// NEED THIS HERE?
+        CGImageRef cgImage = viewImage.CGImage;
+		m_imageSize.x = CGImageGetWidth(cgImage);
+        m_imageSize.y = CGImageGetHeight(cgImage);
+		NSLog(@"%.d",CGImageGetBitsPerPixel(cgImage));
+        m_imageData = CGDataProviderCopyData(CGImageGetDataProvider(cgImage));
+        [uiImage release];
+		[iv release];
+		*/
+		//printf("image loaded\n");
+//		m_applicationEngine->updateView(string((char*)[objData bytes],[objData length]));
+		//										[theString UTF8String]);	
+//		printf("updated view\n");
+		
+//		[objData release];
+		[jpgData release];
+		
+		
+		
+		
+		
+		//[[NSNotificationCenter defaultCenter] postNotificationName:@"threeDPageLoaded"
+		//													object:nil
+		//												  userInfo:nil];
+	}
+	
+    // release the connection, and the data object
+    [connection release];
+}
+
+/*
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    CGSize photoSize = [uiImage size];
+    CGFloat topInset = (screenSize.height - photoSize.height * [scrollView zoomScale]) / 2.0;
+    if (topInset < 0.0)
+    {
+        topInset = 0.0;
+    }
+	
+    [scrollView setContentInset:UIEdgeInsetsMake(topInset, 0.0, -topInset, 0.0)];
+}
+*/
+
+
+- (void) exitClicked {
+	btn.alpha = 0.0;
+
+
+		
+	
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"Remove3D"
+														object:nil
+													  userInfo:nil];
+	
+}
+
+
+
 
 - (void) threeDPageProgress: (NSNotification *)notification { //Updates the status bar
 		
@@ -1298,7 +1899,7 @@
 
 	
 	
-	int i = (totalDownloaded/3705151.0) * 214.0; // Needs to know acctual download size instead of arbitrary 3705151.0
+	int i = (totalDownloaded/totalSize) * 214.0; // Needs to know acctual download size instead of arbitrary 3705151.0
 	
 
 	statusBar2.frame = CGRectMake(405, 365, i, 18);
@@ -5033,11 +5634,49 @@ else{
 - (void) viewDidLoad {
 	//folio=@"12r";
 	////NSLog(@"VIEWDIDLOAD");
+	
+
 	[super viewDidLoad];
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	leavesView.dataSource = self;
 	leavesView.delegate = self;
 	[leavesView reloadData];
 }
+
+
+- (UIView *)viewForZoomingInScrollView:(NYOBetterZoomUIScrollView *)aScrollView {
+	return [aScrollView childView];
+}
+
+- (void)scrollViewDidEndZooming:(NYOBetterZoomUIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
+#ifdef DEBUG
+	UIView *theView = [scrollView childView];
+	NSLog(@"view frame: %@", NSStringFromCGRect(theView.frame));
+	NSLog(@"view bounds: %@", NSStringFromCGRect(theView.bounds));
+#endif
+}
+
+
+
 
 
 #pragma mark -

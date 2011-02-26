@@ -675,21 +675,12 @@
 		D3A60EF912007CD10034B4AF /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D3A60EF512007CD10034B4AF /* 3.jpg */; };
 		D3A60EFA12007CD10034B4AF /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D3A60EF612007CD10034B4AF /* 4.jpg */; };
 		D3A60F7A12008E100034B4AF /* ribbon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A60F7912008E100034B4AF /* ribbon.png */; };
-		D3A6101312010B620034B4AF /* ApplicationEngine.ParametricViewer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A60FFE12010B620034B4AF /* ApplicationEngine.ParametricViewer.mm */; };
-		D3A6101412010B620034B4AF /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100012010B620034B4AF /* GLView.mm */; };
-		D3A6101512010B620034B4AF /* ObjSurface.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100312010B620034B4AF /* ObjSurface.mm */; };
-		D3A6101612010B620034B4AF /* ParametricSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100612010B620034B4AF /* ParametricSurface.cpp */; };
-		D3A6101712010B620034B4AF /* RenderingEngine.TexturedES1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100912010B620034B4AF /* RenderingEngine.TexturedES1.cpp */; };
-		D3A6101812010B620034B4AF /* RenderingEngine.TexturedES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100A12010B620034B4AF /* RenderingEngine.TexturedES2.cpp */; };
-		D3A6101912010B620034B4AF /* ResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100B12010B620034B4AF /* ResourceManager.mm */; };
-		D3A6101A12010B620034B4AF /* TexturedLighting.es2.frag in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100D12010B620034B4AF /* TexturedLighting.es2.frag */; };
-		D3A6101B12010B620034B4AF /* TexturedLighting.es2.vert in Sources */ = {isa = PBXBuildFile; fileRef = D3A6100E12010B620034B4AF /* TexturedLighting.es2.vert */; };
 		D3A6102012010B6D0034B4AF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A6101F12010B6D0034B4AF /* OpenGLES.framework */; };
-		D3A610BF12010F000034B4AF /* GLView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A610BE12010F000034B4AF /* GLView.xib */; };
 		D3B4D5F6120AFD880073599C /* 137r.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D3B4D5F4120AFD880073599C /* 137r.jpg */; };
 		D3B4D5F7120AFD880073599C /* 222v.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D3B4D5F5120AFD880073599C /* 222v.jpg */; };
 		D3B4D6CF120B13780073599C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B4D6CE120B13780073599C /* MessageUI.framework */; };
 		D3CF457311F48EA8001DBC9E /* leftOnTop.png in Resources */ = {isa = PBXBuildFile; fileRef = D3CF457211F48EA8001DBC9E /* leftOnTop.png */; };
+		D3FB7ABE131705CF00C28E3A /* NYOBetterZoomUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FB7ABD131705CF00C28E3A /* NYOBetterZoomUIScrollView.m */; };
 		F243389311ECAD71007FE142 /* LeavesCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = F243388E11ECAD71007FE142 /* LeavesCache.mm */; };
 		F243389411ECAD71007FE142 /* LeavesView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F243389011ECAD71007FE142 /* LeavesView.mm */; };
 		F243389811ECAD8A007FE142 /* Utilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = F243389711ECAD8A007FE142 /* Utilities.mm */; };
@@ -1396,29 +1387,13 @@
 		D3A60EF512007CD10034B4AF /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		D3A60EF612007CD10034B4AF /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		D3A60F7912008E100034B4AF /* ribbon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ribbon.png; sourceTree = "<group>"; };
-		D3A60FFE12010B620034B4AF /* ApplicationEngine.ParametricViewer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApplicationEngine.ParametricViewer.mm; sourceTree = "<group>"; };
-		D3A60FFF12010B620034B4AF /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
-		D3A6100012010B620034B4AF /* GLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLView.mm; sourceTree = "<group>"; };
-		D3A6100112010B620034B4AF /* Interfaces.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Interfaces.hpp; sourceTree = "<group>"; };
-		D3A6100212010B620034B4AF /* Matrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
-		D3A6100312010B620034B4AF /* ObjSurface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjSurface.mm; sourceTree = "<group>"; };
-		D3A6100412010B620034B4AF /* ObjSurface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ObjSurface.hpp; sourceTree = "<group>"; };
-		D3A6100512010B620034B4AF /* ParametricEquations.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParametricEquations.hpp; sourceTree = "<group>"; };
-		D3A6100612010B620034B4AF /* ParametricSurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParametricSurface.cpp; sourceTree = "<group>"; };
-		D3A6100712010B620034B4AF /* ParametricSurface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParametricSurface.hpp; sourceTree = "<group>"; };
-		D3A6100812010B620034B4AF /* Quaternion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Quaternion.hpp; sourceTree = "<group>"; };
-		D3A6100912010B620034B4AF /* RenderingEngine.TexturedES1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingEngine.TexturedES1.cpp; sourceTree = "<group>"; };
-		D3A6100A12010B620034B4AF /* RenderingEngine.TexturedES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingEngine.TexturedES2.cpp; sourceTree = "<group>"; };
-		D3A6100B12010B620034B4AF /* ResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourceManager.mm; sourceTree = "<group>"; };
-		D3A6100D12010B620034B4AF /* TexturedLighting.es2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TexturedLighting.es2.frag; sourceTree = "<group>"; };
-		D3A6100E12010B620034B4AF /* TexturedLighting.es2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TexturedLighting.es2.vert; sourceTree = "<group>"; };
-		D3A6101212010B620034B4AF /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
 		D3A6101F12010B6D0034B4AF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		D3A610BE12010F000034B4AF /* GLView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GLView.xib; sourceTree = "<group>"; };
 		D3B4D5F4120AFD880073599C /* 137r.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 137r.jpg; sourceTree = "<group>"; };
 		D3B4D5F5120AFD880073599C /* 222v.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 222v.jpg; sourceTree = "<group>"; };
 		D3B4D6CE120B13780073599C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D3CF457211F48EA8001DBC9E /* leftOnTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftOnTop.png; sourceTree = "<group>"; };
+		D3FB7ABC131705CF00C28E3A /* NYOBetterZoomUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYOBetterZoomUIScrollView.h; sourceTree = "<group>"; };
+		D3FB7ABD131705CF00C28E3A /* NYOBetterZoomUIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYOBetterZoomUIScrollView.m; sourceTree = "<group>"; };
 		F243388D11ECAD71007FE142 /* LeavesCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesCache.h; sourceTree = "<group>"; };
 		F243388E11ECAD71007FE142 /* LeavesCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LeavesCache.mm; sourceTree = "<group>"; };
 		F243388F11ECAD71007FE142 /* LeavesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeavesView.h; sourceTree = "<group>"; };
@@ -1487,6 +1462,8 @@
 			children = (
 				F26B4B1211F0A93F00AA46CA /* IliadViewController.h */,
 				F26B4B1311F0A93F00AA46CA /* IliadViewController.mm */,
+				D3FB7ABC131705CF00C28E3A /* NYOBetterZoomUIScrollView.h */,
+				D3FB7ABD131705CF00C28E3A /* NYOBetterZoomUIScrollView.m */,
 				D3445D6311F0BE3A008F1CBA /* InfoView.h */,
 				D3445D6411F0BE3A008F1CBA /* InfoView.m */,
 				F2A55E3E11FA4727006BD6CD /* BookmarkView.h */,
@@ -1518,7 +1495,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				D3A60FFD12010B620034B4AF /* 3D */,
 				D344600011F0F812008F1CBA /* FolioImages */,
 				F26B4B2111F0A99900AA46CA /* TouchXML */,
 				F243388C11ECAD71007FE142 /* Leaves */,
@@ -2210,55 +2186,6 @@
 				D344627611F0F813008F1CBA /* 99v.jpg */,
 			);
 			path = FolioImages;
-			sourceTree = "<group>";
-		};
-		D3A60FFD12010B620034B4AF /* 3D */ = {
-			isa = PBXGroup;
-			children = (
-				D3A611411201153D0034B4AF /* Models */,
-				D3A60FFE12010B620034B4AF /* ApplicationEngine.ParametricViewer.mm */,
-				D3A60FFF12010B620034B4AF /* GLView.h */,
-				D3A6100012010B620034B4AF /* GLView.mm */,
-				D3A6100112010B620034B4AF /* Interfaces.hpp */,
-				D3A6100212010B620034B4AF /* Matrix.hpp */,
-				D3A6100312010B620034B4AF /* ObjSurface.mm */,
-				D3A6100412010B620034B4AF /* ObjSurface.hpp */,
-				D3A6100512010B620034B4AF /* ParametricEquations.hpp */,
-				D3A6100612010B620034B4AF /* ParametricSurface.cpp */,
-				D3A6100712010B620034B4AF /* ParametricSurface.hpp */,
-				D3A6100812010B620034B4AF /* Quaternion.hpp */,
-				D3A6100912010B620034B4AF /* RenderingEngine.TexturedES1.cpp */,
-				D3A6100A12010B620034B4AF /* RenderingEngine.TexturedES2.cpp */,
-				D3A6100B12010B620034B4AF /* ResourceManager.mm */,
-				D3A6100C12010B620034B4AF /* Shaders */,
-				D3A6100F12010B620034B4AF /* Textures */,
-				D3A6101212010B620034B4AF /* Vector.hpp */,
-				D3A610BE12010F000034B4AF /* GLView.xib */,
-			);
-			path = 3D;
-			sourceTree = "<group>";
-		};
-		D3A6100C12010B620034B4AF /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				D3A6100D12010B620034B4AF /* TexturedLighting.es2.frag */,
-				D3A6100E12010B620034B4AF /* TexturedLighting.es2.vert */,
-			);
-			path = Shaders;
-			sourceTree = "<group>";
-		};
-		D3A6100F12010B620034B4AF /* Textures */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Textures;
-			sourceTree = "<group>";
-		};
-		D3A611411201153D0034B4AF /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		F243388C11ECAD71007FE142 /* Leaves */ = {
@@ -3058,7 +2985,6 @@
 				D3A60EF912007CD10034B4AF /* 3.jpg in Resources */,
 				D3A60EFA12007CD10034B4AF /* 4.jpg in Resources */,
 				D3A60F7A12008E100034B4AF /* ribbon.png in Resources */,
-				D3A610BF12010F000034B4AF /* GLView.xib in Resources */,
 				D37E074912034B1A001B1CF3 /* NoteView.xib in Resources */,
 				D37E099412074462001B1CF3 /* pageDissolveTop.png in Resources */,
 				D37E09E512074B03001B1CF3 /* pageDissolveBottom.png in Resources */,
@@ -3107,17 +3033,9 @@
 				D3445D8511F0BF24008F1CBA /* CustomCell.m in Sources */,
 				F2A55E4011FA4727006BD6CD /* BookmarkView.m in Sources */,
 				D300688911FDC3B20010020D /* ChapterView.m in Sources */,
-				D3A6101312010B620034B4AF /* ApplicationEngine.ParametricViewer.mm in Sources */,
-				D3A6101412010B620034B4AF /* GLView.mm in Sources */,
-				D3A6101512010B620034B4AF /* ObjSurface.mm in Sources */,
-				D3A6101612010B620034B4AF /* ParametricSurface.cpp in Sources */,
-				D3A6101712010B620034B4AF /* RenderingEngine.TexturedES1.cpp in Sources */,
-				D3A6101812010B620034B4AF /* RenderingEngine.TexturedES2.cpp in Sources */,
-				D3A6101912010B620034B4AF /* ResourceManager.mm in Sources */,
-				D3A6101A12010B620034B4AF /* TexturedLighting.es2.frag in Sources */,
-				D3A6101B12010B620034B4AF /* TexturedLighting.es2.vert in Sources */,
 				D37E074512034AE7001B1CF3 /* NoteView.m in Sources */,
 				D355FB7812103E3200D2A18A /* AboutView.m in Sources */,
+				D3FB7ABE131705CF00C28E3A /* NYOBetterZoomUIScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3128,6 +3046,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3135,6 +3054,7 @@
 				GCC_PREFIX_HEADER = Iliad_Prefix.pch;
 				INFOPLIST_FILE = "Iliad-Info.plist";
 				PRODUCT_NAME = Iliad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BE25D5A5-C98B-40B5-BBC4-396D67784C17";
 			};
 			name = Debug;
 		};
@@ -3142,11 +3062,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Iliad_Prefix.pch;
 				INFOPLIST_FILE = "Iliad-Info.plist";
 				PRODUCT_NAME = Iliad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BE25D5A5-C98B-40B5-BBC4-396D67784C17";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -3155,13 +3077,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BE25D5A5-C98B-40B5-BBC4-396D67784C17";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -3171,7 +3094,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -3179,10 +3102,44 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BE25D5A5-C98B-40B5-BBC4-396D67784C17";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
+		};
+		D3A3C35E1317231400A4D5B0 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BE25D5A5-C98B-40B5-BBC4-396D67784C17";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Distribution;
+		};
+		D3A3C35F1317231400A4D5B0 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Univ. of KY - College of Engr - Vis Center";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Iliad_Prefix.pch;
+				INFOPLIST_FILE = "Iliad-Info.plist";
+				PRODUCT_NAME = Iliad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BE25D5A5-C98B-40B5-BBC4-396D67784C17";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
 		};
 /* End XCBuildConfiguration section */
 
@@ -3192,6 +3149,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				D3A3C35F1317231400A4D5B0 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3201,6 +3159,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				D3A3C35E1317231400A4D5B0 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -11,9 +11,14 @@
 #import "BookmarkView.h"
 #import "IliadAppDelegate.h"
 #import "CXMLDocument.h"
+#import "NYOBetterZoomUIScrollView.h"
 
 
-@interface IliadViewController : UIViewController <LeavesViewDataSource, LeavesViewDelegate, UIPopoverControllerDelegate, UIWebViewDelegate> {
+
+#pragma mark UIScrollViewDelegate
+
+
+@interface IliadViewController : UIViewController <LeavesViewDataSource, LeavesViewDelegate, UIPopoverControllerDelegate, UIWebViewDelegate, UIScrollViewDelegate> {
 	
 	IliadAppDelegate *mainDelegate;
 
@@ -237,7 +242,7 @@
 	
 	UIImageView * threeDBackground;
 	
-	double totalDownloaded;
+	double totalDownloaded, totalSize;
 	
 	
 	UIImageView * statusBar1;
@@ -247,7 +252,30 @@
 	UIImage * imageLP1;
 	UIImage * imageLP2;
 	UIImage * imageLP3;
+	
+	
+	NSMutableData *objData,*jpgData;
+	NSURLConnection *objConnection;
+	NSURLConnection *jpgConnection;
+	BOOL hasData;
+	BOOL jpgFinished, objFinished;
+	
+	UIImage* uiImage;
+	//UIImageView* largeImage;
+	UIButton * btn;
+	//UIScrollView *scrollView;	
+	
+	
+	
+	NYOBetterZoomUIScrollView *_imageScrollView;
+
+
 }
+
+
+@property (nonatomic, retain) NYOBetterZoomUIScrollView *imageScrollView;
+
+
 
 @property (nonatomic, retain) NSString *htmlRP1;
 @property (nonatomic, retain) NSString *htmlRP2;
@@ -255,6 +283,10 @@
 
 
 @property (nonatomic, retain) NSMutableArray *viewsForAnimation;
+
+
+@property (nonatomic, retain) UIScrollView *scrollView;
+
 
 
 -(void) addViewsBack;

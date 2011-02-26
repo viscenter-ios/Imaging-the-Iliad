@@ -10,6 +10,7 @@
 #import "BaseViewController.h"
 #import "IliadViewController.h"
 
+
 @implementation IliadAppDelegate
 
 @synthesize window;
@@ -20,7 +21,12 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {  
+	
+	
+//[[TVOutManager sharedInstance] startTVOut];
+	
+	
 	UIViewController *rootViewController = [[[BaseViewController alloc] init] autorelease];
     viewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
 	
@@ -44,6 +50,11 @@
 	if (bookmarksArrayOneSaved == NULL) {
 		bookmarksArrayOneSaved = [[NSMutableArray arrayWithObjects: nil] retain];
 	}
+	
+	
+	
+	
+
 	
 	
 	return YES;
